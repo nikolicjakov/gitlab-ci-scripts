@@ -13,25 +13,20 @@ Code in this project is organized by folders that match tool or purpose of the s
 ## How to include script in your project?
 
 To include script in your project you need to update gitlab pipeline file named **_.gitlab-ci.yml_** in your project root directory.
-
-If you dont have such file you should ask for help from [DevOps](mailto:admin@og-cs.hr) team.
-
+If you dont have such file you should create one in root directory of your project.
 This example is showing how you can include scripts from this repository to your project pipeline.
 
 ```yaml
 include:
-  - remote: 'https://github.com/nikolicjakov/gitlab-ci-scripts/raw/master/docker/kaniko_build.yml'
+  - remote: 'https://raw.githubusercontent.com/nikolicjakov/gitlab-ci-scripts/master/docker/kaniko_build.yml'
 ```
-This will add maven install script to __build__ stage of project pipeline.
+This will add kaniko docker build script to __package__ stage of project pipeline.
 
 You are also able to include multiple scripts, listing them all one by one as shown in this example.
 
 ```yaml
 include:
-  - project: 'infra/gitlab-ci-scripts'
-    file: 'tool_name/script1.yml'
-  - project: 'infra/gitlab-ci-scripts'
-    file: 'tool_name/script2.yml'
-  - project: 'infra/gitlab-ci-scripts'
-    file: 'tool_name/script3.yml'
+  - remote: 'https://raw.githubusercontent.com/nikolicjakov/gitlab-ci-scripts/master/script-1.yml'
+  - remote: 'https://raw.githubusercontent.com/nikolicjakov/gitlab-ci-scripts/master/script-2.yml'
+  - remote: 'https://raw.githubusercontent.com/nikolicjakov/gitlab-ci-scripts/master/script-3.yml'
 ```
