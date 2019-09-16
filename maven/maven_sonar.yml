@@ -1,0 +1,15 @@
+variables:
+  MAVEN_CLI_OPTS: "--batch-mode -Dsonar.host.url=$SONAR_HOST -Dsonar.login=$SONAR_TOKEN $SONAR_ARGS"
+  MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
+
+stages:
+  - build
+  - test
+  - package
+  
+code_quality_sonar:
+  stage: test
+  image: repo.djdev.org/docker-public/buildbox:jdk8
+  variables:
+  script:
+    - mvn $MAVEN_CLI_OPTS clean verify sonar:sonar
