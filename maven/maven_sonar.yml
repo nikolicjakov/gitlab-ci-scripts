@@ -9,7 +9,7 @@ stages:
   
 code_quality_sonar:
   stage: test
-  image: repo.djdev.org/docker-public/buildbox:jdk8
+  image: jakov/buildbox:jdk8
   variables:
   script:
     - mvn $MAVEN_CLI_OPTS clean verify sonar:sonar
